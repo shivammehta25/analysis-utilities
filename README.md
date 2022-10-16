@@ -1,4 +1,4 @@
-# WhisperWERAnalyser
+# # analysis-utilities
 
 Uses whisper default large to transcribe the text
 
@@ -31,4 +31,4 @@ Use `structure.HvdSet`
 ```python
 from groundtruth import hvd_sentences
 hvdset = HvdSet(set_no=1, ground_truth=hvd_sentences)
-```# analysis-utilities
+```
