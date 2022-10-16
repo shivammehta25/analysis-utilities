@@ -9,7 +9,7 @@ DATADIR = WORKDIR / 'data'
 TRANSCRIPTIONDIR = WORKDIR / 'transcription'
 
 
-class Whisper():
+class Whisper:
     def __init__(self, model="large"):
         self.model = whisper.load_model(model)
         logging.log(logging.INFO, "Whisper model loaded")
