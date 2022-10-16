@@ -1,4 +1,4 @@
-# # analysis-utilities
+# analysis-utilities
 
 Uses whisper default large to transcribe the text
 
