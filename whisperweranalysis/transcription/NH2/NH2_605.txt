@@ -1,1 +1,1 @@
- Greet the new guests and leave quickly.
+ greet the new guests, and leave quickly.

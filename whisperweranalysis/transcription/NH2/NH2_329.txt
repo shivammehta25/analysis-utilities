@@ -1,1 +1,1 @@
- Glass will clink when struck by metal.
+ The last will clink when struck by metal.

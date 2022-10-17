@@ -30,13 +30,13 @@ class Whisper:
     def transcribe_folder(self, folder_path):
         folder_path = Path(folder_path)
         filelist = list(folder_path.rglob('*.*'))
-        for filepath in tqdm(filelist):
+        for filepath in tqdm(filelist, leave=False):
             text = self.transcribe(str(filepath))
             transcription_path = Path(str(filepath).replace(str(DATADIR), str(TRANSCRIPTIONDIR)).replace(".wav", ".txt"))
             transcription_path.parent.mkdir(parents=True, exist_ok=True)
             with open(transcription_path, 'w') as f:
                 f.write(text)
-            
+        logger.info(f"Transcriptions saved to {TRANSCRIPTIONDIR}")
 
 
 
