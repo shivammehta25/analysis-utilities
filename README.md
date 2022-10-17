@@ -2,21 +2,23 @@
 
 Uses whisper default large to transcribe the text
 
-
-
-### Usage
+## Usage
 
 1. Use `transcriber.Whisper` to transcribe the the folder of audio files
+
 ```python
 whisper = Whisper()
 whisper.transcribe_folder(DATADIR)
 ```
+
 2. Use `wer.compute` to compute the wer
+
 ```python
 compute(reference, transcription)
 ```
 
 3. For harvard sentences and folder strcuture like
+
 ```
 - data
     |- model1
@@ -28,7 +30,8 @@ compute(reference, transcription)
 ```
 
 Use `structure.HvdSet`
+
 ```python
-from groundtruth import hvd_sentences
+from groundtruth import HvdSet
 hvdset = HvdSet(set_no=1, ground_truth=hvd_sentences)
 ```

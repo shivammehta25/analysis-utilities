@@ -20,6 +20,9 @@ transformers = "^4.23.1"
 ffmpeg-python = "^0.2.0"
 jiwer = "^2.5.1"
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.16.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
