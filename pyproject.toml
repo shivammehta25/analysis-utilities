@@ -15,10 +15,9 @@ torchvision = { url = "https://download.pytorch.org/whl/cu116/torchvision-0.13.1
 whisper = {git = "https://github.com/openai/whisper.git"}
 tqdm = "^4.64.1"
 setuptools-rust = "^1.5.2"
-ffmpeg = "^1.4"
 transformers = "^4.23.1"
-ffmpeg-python = "^0.2.0"
 jiwer = "^2.5.1"
+ffmpeg-python = "^0.2.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.16.0"

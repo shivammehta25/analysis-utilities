@@ -128,14 +128,6 @@ python-versions = "*"
 tests = ["asttokens", "littleutils", "pytest", "rich"]
 
 [[package]]
-name = "ffmpeg"
-version = "1.4"
-description = "ffmpeg python package url [https://github.com/jiashaokun/ffmpeg]"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "ffmpeg-python"
 version = "0.2.0"
 description = "Python bindings for FFmpeg - with complex filtering support"
@@ -937,7 +929,7 @@ resolved_reference = "d18e9ea5dd2ca57c697e8e55f9e654f06ede25d0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "8b32003da986e12199d994707f1dbaf89efc3ea99948620ca698bf249fa2a454"
+content-hash = "9b444ec3ca03602c0a141b563c851e4e1e4bba40d5fe88c8d6c0b655ef591f0c"
 
 [metadata.files]
 appnope = [
@@ -1136,9 +1128,6 @@ entrypoints = [
 executing = [
     {file = "executing-1.1.1-py2.py3-none-any.whl", hash = "sha256:236ea5f059a38781714a8bfba46a70fad3479c2f552abee3bbafadc57ed111b8"},
     {file = "executing-1.1.1.tar.gz", hash = "sha256:b0d7f8dcc2bac47ce6e39374397e7acecea6fdc380a6d5323e26185d70f38ea8"},
-]
-ffmpeg = [
-    {file = "ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"},
 ]
 ffmpeg-python = [
     {file = "ffmpeg-python-0.2.0.tar.gz", hash = "sha256:65225db34627c578ef0e11c8b1eb528bb35e024752f6f10b78c011f6f64c4127"},

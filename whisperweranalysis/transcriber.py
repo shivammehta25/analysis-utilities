@@ -8,11 +8,20 @@ WORKDIR = Path(__file__).parent
 DATADIR = WORKDIR / 'data'
 TRANSCRIPTIONDIR = WORKDIR / 'transcription'
 
+logger = logging.getLogger(__name__)
 
 class Whisper:
+    """
+    If ffmpeg gives error
+    pip uninstall ffmpeg
+    pip uninstall ffmpeg-python
+
+    and install ffmpeg-python again with :
+    pip install ffmpeg-python
+    """
     def __init__(self, model="large"):
         self.model = whisper.load_model(model)
-        logging.log(logging.INFO, "Whisper model loaded")
+        logger.info("Whisper model loaded")
 
     def transcribe(self, audio_path):
         result = self.model.transcribe(audio_path)
@@ -33,4 +42,4 @@ class Whisper:
 
 if __name__ == '__main__':
     whisper = Whisper()
-    whisper.transcribe_folder(DATADIR)
+    whisper.transcribe_folder(DATADIR / 'NH2')
