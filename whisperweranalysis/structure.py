@@ -23,6 +23,9 @@ class MultipleSets:
     def __iter__(self):
         return iter(self.harvard_sets)
     
+    def __len__(self):
+        return len(self.harvard_sets)
+    
     
     def get_all_models_wer(self):
         assert len(self.harvard_sets) > 0, "No sets have been computed yet"
@@ -52,7 +55,10 @@ class MultipleSets:
             final_set = get_set_intersection(iterative_set)
             # if the intersection is to the number required, return
             if len(final_set) >= n:
-                return sorted(list(final_set))
+                break
+    
+        indices = sorted(list(final_set))
+        return [self[i] for i in indices]
 
 
 class HvdSet:
