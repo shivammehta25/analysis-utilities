@@ -1,1 +1,1 @@
- At the column end, put the sum here.
+ at the column and put the sum here.

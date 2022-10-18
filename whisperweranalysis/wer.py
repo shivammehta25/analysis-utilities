@@ -23,4 +23,4 @@ def compute(reference, hypothesis):
         float: WER between transcriptions and references
     """
     return jiwer.wer(reference, hypothesis, truth_transform=normalising_transformation,
-                   hypothesis_transform=normalising_transformation)
+                   hypothesis_transform=normalising_transformation) * 100

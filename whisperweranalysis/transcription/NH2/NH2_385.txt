@@ -1,1 +1,1 @@
- Fixed, stones shine but cost little.
+ Fake stones shine but cost little.
