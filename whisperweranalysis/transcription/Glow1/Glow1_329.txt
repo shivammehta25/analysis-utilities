@@ -1,0 +1,1 @@
+ Blast will clink when struck by metal.

@@ -28,6 +28,7 @@ class Whisper:
         return result["text"]
     
     def transcribe_folder(self, folder_path):
+        logger.info(f"Running whisper over: {folder_path}")
         folder_path = Path(folder_path)
         filelist = list(folder_path.rglob('*.*'))
         for filepath in tqdm(filelist, leave=False):
@@ -42,4 +43,4 @@ class Whisper:
 
 if __name__ == '__main__':
     whisper = Whisper()
-    whisper.transcribe_folder(DATADIR / 'NH2')
+    whisper.transcribe_folder(DATADIR / 'NeuralFHMM_ND_150k')

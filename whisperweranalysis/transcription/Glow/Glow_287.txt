@@ -1,1 +1,1 @@
- and return a smooth surface. Is it bump or flop?
+ a ridge on a smooth surface is a bump or flaw.

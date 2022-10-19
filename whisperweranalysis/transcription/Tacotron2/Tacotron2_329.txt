@@ -1,1 +1,1 @@
- Balls will clink when struck by metal.
+ Glass will clink when struck by metal.

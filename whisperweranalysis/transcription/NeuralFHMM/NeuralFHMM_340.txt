@@ -1,1 +1,1 @@
- Code is used when secrets are sent.
+ Own is used when secrets are sent.
