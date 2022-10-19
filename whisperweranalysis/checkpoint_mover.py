@@ -20,8 +20,8 @@ def copy_checkpoints(checkpoint_dir, subfolder_dir, list_iters):
         
     Path(checkpoint_dir / subfolder_dir).mkdir(parents=True, exist_ok=True)
     subfolder_dir = checkpoint_dir / subfolder_dir
-    
-    for filename in checkpoint_dir.glob(f"*{CKPT_EXTENTION}"):
+    all_checkpoints = checkpoint_dir.glob(f"*{CKPT_EXTENTION}")
+    for filename in tqdm(all_checkpoints):
         iteration = get_glow_iteration(filename)    # TODO: change here for different systems
         if iteration in list_iters:
             shutil.copy(filename, subfolder_dir / filename.name)

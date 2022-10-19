@@ -42,5 +42,5 @@ class Whisper:
 
 
 if __name__ == '__main__':
-    whisper = Whisper()
-    whisper.transcribe_folder(DATADIR / 'GT')
+    whisper = Whisper("medium")
+    whisper.transcribe_folder(DATADIR / 'GT' / '0')
