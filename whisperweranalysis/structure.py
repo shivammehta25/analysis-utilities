@@ -104,15 +104,52 @@ class HvdSet:
         for model, text in self.transcriptions.items():
             self.wer[model] = compute(self.ground_truth, text)
         self.wer = dict(self.wer)
+        
+        
+        
+class LJSpeech:
+    
+    def __init__(self, model_name, iterations='') -> None:
+        self.model_name = model_name
+        self.iterations = iterations
+        self.transcriptions = []
+        
+    def __repr__(self) -> str:
+        return f"LJSpeech({self.model_name}, {self.iterations}, len={len(self)})"
+
+    def __len__(self):
+        return len(self.transcriptions)
+    
+    def load_transcriptions(self, dir_path):
+        if not isinstance(dir_path, Path):
+            dir_path = Path(dir_path)
+        dirs = sorted(list(dir_path.glob('*.txt')), key= lambda x: int(x.stem))
+        for file in dirs:
+            with open(file, 'r') as f:
+                self.transcriptions.append(f.readline().strip())
+                
+    @classmethod
+    def load_from_dir(cls, dir_path):
+        if not isinstance(dir_path, Path):
+            dir_path = Path(dir_path)
+        
+        iter_name = dir_path.name
+        model_name = dir_path.parent.name
+        lj_class =  cls(model_name, iter_name)
+        lj_class.load_transcriptions(dir_path)
+        return lj_class
             
 
 if __name__ == "__main__":
-    from whisperweranalysis.groundtruth import hvd_sentences
-    hvd = HvdSet(1, hvd_sentences)
-    hvd.compute_wer('whisperweranalysis/transcription')
+    # from whisperweranalysis.groundtruth import hvd_sentences
+    # hvd = HvdSet(1, hvd_sentences)
+    # hvd.compute_wer('whisperweranalysis/transcription')
     
     
-    from whisperweranalysis.structure import MultipleSets
-    hvd_sets = MultipleSets('/home/shivam/Projects/analysis-scripts/WhisperWERAnalysis/whisperweranalysis/transcription')
-    hvd_sets.get_top_n()
+    # from whisperweranalysis.structure import MultipleSets
+    # hvd_sets = MultipleSets('/home/shivam/Projects/analysis-scripts/WhisperWERAnalysis/whisperweranalysis/transcription')
+    # hvd_sets.get_top_n()
+    
+    
+    LJSpeech.load_from_dir('whisperweranalysis/LJ_Valid_transcription/GT/0')
 
