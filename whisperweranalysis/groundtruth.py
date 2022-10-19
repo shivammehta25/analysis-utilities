@@ -830,7 +830,7 @@ lj_valid = [
 
 our_LJ_dict = {
 	'LJ034-0035.wav' : "The position of this palmprint on the carton was parallel with the long axis of the box, and at right angles with the short axis.",
-	'LJ023-0033.wav' : "we will not allow ourselves to run around in new circles of futile discussion and debate, always postponing the day of : decision.",
+	'LJ023-0033.wav' : "We will not allow ourselves to run around in new circles of futile discussion and debate, always postponing the day of decision.",
 	'LJ003-0319.wav' : "Provided only that their security was not jeopardized, and dependent upon the enforcement of another new rule.",
 	'LJ016-0277.wav' : "This is proved by contemporary accounts, especially one graphic and realistic article which appeared in the 'Times'.",
 	'LJ050-0022.wav' : "A formal and thorough description of the responsibilities of the advance agent is now in preparation by the Service.",
@@ -855,7 +855,7 @@ our_LJ_dict = {
 	'LJ018-0349.wav' : "His disclaimer, distinct and detailed on every point, was intended simply for effect.",
 	'LJ033-0072.wav' : "I then stepped off of it and the officer picked it up in the middle and it bent so.",
 	'LJ008-0085.wav' : "The fire had not quite burnt out at twelve, in nearly four hours, that is to say.",
-	'LJ011-0118.wav' : "In eighteen twenty nine the gallows claimed two more victims for this offense.",
+	'LJ021-0040.wav' : "The second step we have taken in the restoration of normal business enterprise.",
 	'LJ027-0006.wav' : "In all these lines the facts are drawn together by a strong thread of unity.",
 	'LJ002-0260.wav' : "Yet the public opinion of the whole body seems to have checked dissipation.",
 	'LJ013-0055.wav' : "The jury did not believe him, and the verdict was for the defendants.",
