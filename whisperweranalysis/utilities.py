@@ -25,3 +25,23 @@ def get_all_values(list_wer_dicts : List[Dict]) -> Dict:
 def get_statistics_of_wer(list_wer_dicts : List[Dict]):
     accumulated = get_all_values(list_wer_dicts)
     return {model : np.mean(accumulated[model]) for model in accumulated}, {model : np.std(accumulated[model]) for model in accumulated}
+
+
+
+## TODO:
+### Copy GT code
+def copy_gt():
+    import shutil
+    from pathlib import Path
+
+    from tqdm.auto import tqdm
+
+    filelist = Path('/hdd/shivam/Project/Neural-FHMM/data/filelists/ljs_audio_text_val_filelist.txt')
+    wav_loc = Path('/hdd/shivam/Project/Neural-FHMM')
+    SAVE_LOC = Path('whisperweranalysis/LJ_Valid_data/GT')
+
+    with open(filelist, 'r') as f:
+        for i, line in enumerate(tqdm(f.readlines())):
+            sub_loc = line.strip().split('|')[0]
+            wav_path = wav_loc / sub_loc
+            shutil.copy(wav_path, SAVE_LOC / f"{i + 1}.wav")
