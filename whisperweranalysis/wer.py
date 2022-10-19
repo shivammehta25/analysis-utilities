@@ -6,6 +6,7 @@ normalising_transformation = jiwer.Compose([
     jiwer.Strip(),
     jiwer.RemoveEmptyStrings(),
     jiwer.RemovePunctuation(),
+    jiwer.ExpandCommonEnglishContractions(),
     jiwer.ReduceToListOfListOfWords()
 ])
 
