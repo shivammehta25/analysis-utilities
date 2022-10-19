@@ -35,3 +35,15 @@ Use `structure.HvdSet`
 from groundtruth import HvdSet
 hvdset = HvdSet(set_no=1, ground_truth=hvd_sentences)
 ```
+
+
+
+
+Use checkpoint_mover to move the iteration checkpoint to a sub folder
+
+```python
+list_iters = get_list_iter()
+print(len(list_iters))
+print(list_iters)
+copy_checkpoints("./logs/blank", "glow_checkpoints", list_iters)
+```
