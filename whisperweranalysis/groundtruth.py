@@ -829,12 +829,12 @@ lj_valid = [
 
 
 our_LJ_dict = {
-	'LJ034-0035.wav' : "The position of this palmprint on the carton was parallel with the long axis of the box, and at right angles with the short axis.",
+	'LJ034-0035.wav' : "The position of this palmprint on the carton was parallel with the long axis of the box and at right angles with the short axis.",
 	'LJ023-0033.wav' : "We will not allow ourselves to run around in new circles of futile discussion and debate, always postponing the day of decision.",
 	'LJ003-0319.wav' : "Provided only that their security was not jeopardized, and dependent upon the enforcement of another new rule.",
 	'LJ016-0277.wav' : "This is proved by contemporary accounts, especially one graphic and realistic article which appeared in the 'Times'.",
 	'LJ050-0022.wav' : "A formal and thorough description of the responsibilities of the advance agent is now in preparation by the Service.",
-	'LJ002-0225.wav' : "The rentals of rooms and fees went to the warden, whose income was two thousand three hundred seventy-two pounds.",
+	'LJ002-0225.wav' : "The rentals of rooms and fees went to the warden, whose income was two thousand three hundred seventy two pounds.",
 	'LJ048-0252.wav' : "Three of these agents occupied positions on the running boards of the car, and the fourth was seated in the car.",
 	'LJ024-0054.wav' : "Democracy will have failed far beyond the importance to it of any king of precedent concerning the judiciary.",
 	'LJ028-0421.wav' : "it was the beginning of the great collections of Babylonian antiquities in the museums of the Western world.",
@@ -846,7 +846,7 @@ our_LJ_dict = {
 	'LJ021-0139.wav' : "There should be at least a full and fair trial given to these means of ending industrial warfare.",
 	'LJ003-0282.wav' : "Many years were to elapse before these objections should be fairly met and universally overcome.",
 	'LJ048-0288.wav' : "Might have been more alert in the Dallas motorcade if they had retired promptly in Fort Worth.",
-	'LJ019-0270.wav' : "Vegetables, especially the potato, that most valuable anti-scorbutic, was too often omitted.",
+	'LJ021-0025.wav' : "And in many directions, the intervention of that organized control which we call government",
 	'LJ021-0140.wav' : "and in such an effort we should be able to secure for employers and employees and consumers.",
 	'LJ010-0027.wav' : "Nor did the methods by which they were perpetrated greatly vary from those in times past.",
 	'LJ029-0004.wav' : "The narrative of these events is based largely on the recollections of the participants.",
@@ -860,7 +860,7 @@ our_LJ_dict = {
 	'LJ002-0260.wav' : "Yet the public opinion of the whole body seems to have checked dissipation.",
 	'LJ013-0055.wav' : "The jury did not believe him, and the verdict was for the defendants.",
 	'LJ008-0215.wav' : "One by one the huge uprights of black timber were fitted together.",
-	'LJ018-0206.wav' : "He was a tall, slender man, with a long face and iron-gray hair.",
+	'LJ018-0206.wav' : "He was a tall, slender man, with a long face and iron gray hair.",
 	'LJ004-0239.wav' : "He had been committed for an offense for which he was acquitted.",
 	'LJ037-0007.wav' : "Three others subsequently identified Oswald from a photograph.",
 	'LJ037-0248.wav' : "The eyewitnesses vary in their identification of the jacket.",
@@ -872,3 +872,9 @@ our_LJ_dict = {
 }
 
 our_LJ_set = list(our_LJ_dict.values())
+
+
+Attention_checks  = {
+    'LJ012-0049.wav' :	"led him to think seriously of trying his fortunes in another land.",
+    'LJ048-0200.wav' : "paying particular attention to the crowd for any unusual activity."
+}
