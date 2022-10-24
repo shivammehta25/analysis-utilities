@@ -1,1 +1,1 @@
- Guess the result from the first scores.
+ That's the result from the first scores.

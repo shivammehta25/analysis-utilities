@@ -1,1 +1,1 @@
- to plus seven is less than ten.
+ to plus 7 is less than 10.

@@ -1,1 +1,1 @@
- Bottles hold four kinds of rum.
+ bottles polled for kinds of rum.

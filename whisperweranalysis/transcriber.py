@@ -5,8 +5,8 @@ import whisper
 from tqdm import tqdm
 
 WORKDIR = Path(__file__).parent
-DATADIR = WORKDIR / 'LJ_Valid_data'
-TRANSCRIPTIONDIR = WORKDIR / 'LJ_Valid_transcription'
+DATADIR = WORKDIR / 'data'
+TRANSCRIPTIONDIR = WORKDIR / 'transcription'
 
 logger = logging.getLogger(__name__)
 
@@ -42,5 +42,5 @@ class Whisper:
 
 
 if __name__ == '__main__':
-    whisper = Whisper("medium")
-    whisper.transcribe_folder(DATADIR / 'GT_Medium_whisper')
+    whisper = Whisper("large")
+    whisper.transcribe_folder(DATADIR)

@@ -1,1 +1,1 @@
- adding fast leads to wrong sums.
+ and fast leads to wrong sums.

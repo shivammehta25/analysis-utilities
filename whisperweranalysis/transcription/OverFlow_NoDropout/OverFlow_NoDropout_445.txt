@@ -1,0 +1,1 @@
+ Models hold for kinds of rum.

@@ -762,7 +762,7 @@ lj_valid = [
     "even when the high sheriff had told him there was no possibility of a reprieve, and within a few hours of execution.",
     "but there is a system for the immediate notification of the Secret Service by the confining institution when a subject is released or escapes.",
     "When other pleasures palled he took a theater, and posed as a munificent patron of the dramatic art.",
-    "(old exchange rate) in addition to his factory salary of approximately equal amount",
+    "Old exchange rate in addition to his factory salary of approximately equal amount",
     "Hill had both feet on the car and was climbing aboard to assist President and Mrs. Kennedy.",
     "seeing that since the establishment of the Central Criminal Court, Newgate received prisoners for trial from several counties.",
     "then let twenty days pass, and at the end of that time station near the Chaldasan gates a body of four thousand.",
@@ -782,7 +782,7 @@ lj_valid = [
     "accordingly they committed to him the command of their whole army, and put the keys of their city into his hands.",
     "Mrs. Kennedy chose the hospital in Bethesda for the autopsy because the President had served in the Navy.",
     "From those willing to join in establishing this hoped for period of peace.",
-    "Müller, Müller, He's the man, till a diversion was created by the appearance of the gallows, which was received with continuous yells.",
+    "Muller, Muller, He's the man, till a diversion was created by the appearance of the gallows, which was received with continuous yells.",
     "Years later, when the archaeologists could readily distinguish the false from the true.",
     "his defense being that he had intended to commit suicide, but that, on the appearance of this officer who had wronged him.",
     "together with a great increase in the payrolls, there has come a substantial rise in the total of industrial profits",
@@ -831,12 +831,12 @@ lj_valid = [
 our_LJ_dict = {
 	'LJ034-0035.wav' : "The position of this palmprint on the carton was parallel with the long axis of the box and at right angles with the short axis.",
 	'LJ023-0033.wav' : "We will not allow ourselves to run around in new circles of futile discussion and debate, always postponing the day of decision.",
-	'LJ003-0319.wav' : "Provided only that their security was not jeopardized, and dependent upon the enforcement of another new rule.",
+	'LJ046-0055.wav' : "It is now possible for Presidents to travel the length and breadth of a land far larger than the United States.", #! new
 	'LJ016-0277.wav' : "This is proved by contemporary accounts, especially one graphic and realistic article which appeared in the 'Times'.",
 	'LJ050-0022.wav' : "A formal and thorough description of the responsibilities of the advance agent is now in preparation by the Service.",
 	'LJ002-0225.wav' : "The rentals of rooms and fees went to the warden, whose income was two thousand three hundred seventy two pounds.",
-	'LJ048-0252.wav' : "Three of these agents occupied positions on the running boards of the car, and the fourth was seated in the car.",
-	'LJ024-0054.wav' : "Democracy will have failed far beyond the importance to it of any king of precedent concerning the judiciary.",
+	'LJ021-0012.wav' : "With respect to industry and business, but nearly all are agreed that private enterprise in times such as these.", #! new
+	'LJ035-0155.wav' : "The only exit from the office in the direction Oswald was moving was through the door to the front stairway.", #! new
 	'LJ028-0421.wav' : "it was the beginning of the great collections of Babylonian antiquities in the museums of the Western world.",
 	'LJ015-0025.wav' : "The bank enjoyed an excellent reputation, it had a good connection, and was supposed to be perfectly sound.",
 	'LJ016-0054.wav' : "But he did not like the risk of entering a room by the fireplace, and the chances of detection it offered.",
@@ -845,7 +845,7 @@ our_LJ_dict = {
 	'LJ002-0171.wav' : "The boy declared he saw no one, and accordingly passed through without paying the toll of a penny.",
 	'LJ021-0139.wav' : "There should be at least a full and fair trial given to these means of ending industrial warfare.",
 	'LJ003-0282.wav' : "Many years were to elapse before these objections should be fairly met and universally overcome.",
-	'LJ048-0288.wav' : "Might have been more alert in the Dallas motorcade if they had retired promptly in Fort Worth.",
+	'LJ016-0367.wav' : "Under the new system the whole of the arrangements from first to last fell upon the officers.", #! new
 	'LJ021-0025.wav' : "And in many directions, the intervention of that organized control which we call government",
 	'LJ021-0140.wav' : "and in such an effort we should be able to secure for employers and employees and consumers.",
 	'LJ010-0027.wav' : "Nor did the methods by which they were perpetrated greatly vary from those in times past.",
@@ -854,7 +854,7 @@ our_LJ_dict = {
 	'LJ030-0063.wav' : "He had repeated this wish only a few days before, during his visit to Tampa, Florida.",
 	'LJ018-0349.wav' : "His disclaimer, distinct and detailed on every point, was intended simply for effect.",
 	'LJ033-0072.wav' : "I then stepped off of it and the officer picked it up in the middle and it bent so.",
-	'LJ008-0085.wav' : "The fire had not quite burnt out at twelve, in nearly four hours, that is to say.",
+	'LJ050-0029.wav' : "That is reflected in definite and comprehensive operating procedures.",  #! new
 	'LJ021-0040.wav' : "The second step we have taken in the restoration of normal business enterprise.",
 	'LJ027-0006.wav' : "In all these lines the facts are drawn together by a strong thread of unity.",
 	'LJ002-0260.wav' : "Yet the public opinion of the whole body seems to have checked dissipation.",

@@ -1,1 +1,1 @@
- Draw the chart with heavy black lines.
+ Draw a chart with heavy black lines.

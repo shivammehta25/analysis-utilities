@@ -1,1 +1,1 @@
- type out three lists of orders.
+ tap on three lists of orders.

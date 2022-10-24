@@ -1,1 +1,1 @@
- Guess the result from the first scores.
+ cast the result from the first scores.
