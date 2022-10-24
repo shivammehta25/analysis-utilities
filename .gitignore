@@ -137,5 +137,7 @@ dmypy.json
 # Data
 data/
 
+data_backup/
+
 
 LJ_Valid_data/
