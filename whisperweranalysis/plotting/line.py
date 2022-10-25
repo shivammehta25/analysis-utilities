@@ -86,7 +86,26 @@ def validate_input(x, type_required):
         raise TypeError(f"x must be of type {type_required} but was {type(x)}")
 
 
-def plot_lines(x: List[Any], y: List[Any], x_label: str, y_label: str, legend_label: List[str], title: Optional[str] = None, x_ticks: Optional[List[Any]] = [], x_tick_labels: Optional[List[Any]] = [], line_format: Optional[List[str]] = [], plot_colors: Optional[List[str]] = [], file_name: Optional[str] = None, xlim: Optional[Tuple[float]] = (0, None), ylim: Optional[Tuple[float]] = (0, None), aspect_ratio: Optional[Tuple[float]] = (1, 1), plot_log_x=False, plot_log_y=False) -> None:
+def plot_lines(x: List[Any], 
+               y: List[Any], 
+               x_label: str, 
+               y_label: str,
+               legend_label: List[str],
+               title: Optional[str] = None,
+               x_ticks: Optional[List[Any]] = [],
+               x_tick_labels: Optional[List[Any]] = [],
+               y_ticks: Optional[List[Any]] = [],
+               y_tick_labels: Optional[List[Any]] = [],
+               line_format: Optional[List[str]] = [],
+               plot_colors: Optional[List[str]] = [],
+               file_name: Optional[str] = None,
+               xlim: Optional[Tuple[float]] = (0, None),
+               ylim: Optional[Tuple[float]] = (0, None),
+               aspect_ratio: Optional[Tuple[float]] = (1, 1),
+               plot_log_x: bool=False,
+               plot_log_y: bool=False,
+               **kwargs
+    ) -> None:
     """
     Plots a line graph with multiple lines.
     
@@ -158,12 +177,18 @@ def plot_lines(x: List[Any], y: List[Any], x_label: str, y_label: str, legend_la
                 ), f"x_tick_labels must be of the same length as x_ticks but received x_tick_labels: {len(x_tick_labels)}, x_ticks: {len(x_ticks)}."
         ax.set_xticks(x_ticks)
         ax.set_xticklabels(x_tick_labels)
+    
+    if y_tick_labels:
+        assert (len(y_ticks) == len(y_tick_labels)
+                ), f"y_tick_labels must be of the same length as y_ticks but received y_tick_labels: {len(y_tick_labels)}, y_ticks: {len(y_ticks)}."
+        ax.set_yticks(y_ticks)
+        ax.set_yticklabels(y_tick_labels)
 
     adjustFigAspect(fig, aspect_ratio[0]/aspect_ratio[1])
         
     # ax.get_xaxis().set_major_formatter(ticker.ScalarFormatter())
     ax.set_xlabel(x_label)
-    ax.set_xlim(0, 100000)
+    ax.set_xlim(xlim)
     ax.set_ylim(ylim)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
