@@ -126,7 +126,12 @@ class LJSpeech:
         dirs = sorted(list(dir_path.glob('*.txt')), key= lambda x: int(x.stem))
         for file in dirs:
             with open(file, 'r') as f:
-                self.transcriptions.append(f.readline().strip())
+                line = f.readline().strip()
+                self.transcriptions.append(line if line else '.')
+                
+    def compute_wer(self, ground_truth):
+        self.wer = compute(ground_truth, self.transcriptions)
+        return self.wer
                 
     @classmethod
     def load_from_dir(cls, dir_path):
@@ -151,5 +156,6 @@ if __name__ == "__main__":
     # hvd_sets.get_top_n()
     
     
-    LJSpeech.load_from_dir('whisperweranalysis/LJ_Valid_transcription/GT/0')
-
+    l = LJSpeech.load_from_dir('whisper-analysis-plots/whisperweranalysis/LJ_Valid_transcription/VOC/1000')
+    from whisperweranalysis.groundtruth import lj_valid
+    l.compute_wer(lj_valid)
