@@ -19,6 +19,7 @@ class Whisper:
     pip install ffmpeg-python
     """
     def __init__(self, model="large"):
+        print(f"[!] Loading model {model} ...")
         self.model = whisper.load_model(model)
         print("[+] Whisper model loaded")
 
@@ -33,16 +34,21 @@ class Whisper:
             if isinstance(exception, str):
                 exception = set([exception])
 
-        print(f"Running whisper over: {input_dir}")
+        print(f"[!] Running whisper over: {input_dir}")
+        print(f"[!] Output will be saved in: {output_dir}")
+        
         input_dir = Path(input_dir)
-        filelist = list(input_dir.rglob('*.*'))
+        output_dir = Path(output_dir)
+        
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        filelist = list(input_dir.rglob('*.wav'))
         for filepath in tqdm(filelist, leave=False):
-            if exception and filepath.parent.parent.name in exception:    # change here the location to exclude
+            if exception and filepath.parent.name in exception:    # change here the location to exclude
                 print(f"\r[!] Skipping: {exception}")
                 continue
-            transcription_path = Path(str(filepath).replace(str(DATADIR), str(output_dir)).replace(".wav", ".txt"))
-            transcription_path.parent.mkdir(parents=True, exist_ok=True)
-            
+            transcription_path = output_dir /str(filepath.name).replace(".wav", ".txt")
+
             if transcription_path.exists():
                 print(f"\r[!] Skipping: {transcription_path} it already exists!")
                 continue
