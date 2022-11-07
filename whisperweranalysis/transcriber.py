@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 from pathlib import Path
 
@@ -51,16 +52,19 @@ class Whisper:
             with open(transcription_path, 'w') as f:
                 f.write(text)
         print(f"[+] Transcriptions saved to {output_dir}")
-
-
-if __name__ == '__main__':
+        
+        
+def main():
     model_choices = ["large", "medium", "small"]
     parser = argparse.ArgumentParser(description='Run whisper on a folder')
     parser.add_argument("-m", "--model", default=model_choices[1], help="Model to use", choices=model_choices)
     parser.add_argument("-i", "--input", help="Input folder", required=True)
     parser.add_argument("-o", "--output", help="Output folder", required=True)
     parser.add_argument('-e','--exceptions', nargs='+', help='Subfolders to exclude', default=None)
-
     args = parser.parse_args()
+    print(args)
     whisper = Whisper(model=args.model)
     whisper.transcribe_folder(args.input, args.output, exception=args.exceptions)
+
+if __name__ == '__main__':
+    main()
