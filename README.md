@@ -2,6 +2,40 @@
 
 Uses whisper default large to transcribe the text
 
+## New
+Now has command line scripts:
+```
+usage: resampler [-h] -i INPUT [-o OUTPUT] [-sr TARGET_SR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        Input path to resample
+  -o OUTPUT, --output OUTPUT
+                        Output folder
+  -sr TARGET_SR, --target-sr TARGET_SR
+                        Target sampling rate
+``` 
+
+and 
+
+```
+usage: whispertranscriber [-h] [-m {large,medium,small}] -i INPUT -o OUTPUT [-e EXCEPTIONS [EXCEPTIONS ...]]
+
+Run whisper on a folder
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m {large,medium,small}, --model {large,medium,small}
+                        Model to use
+  -i INPUT, --input INPUT
+                        Input folder
+  -o OUTPUT, --output OUTPUT
+                        Output folder
+  -e EXCEPTIONS [EXCEPTIONS ...], --exceptions EXCEPTIONS [EXCEPTIONS ...]
+                        Subfolders to exclude
+```
+
 ## Usage
 
 1. Use `transcriber.Whisper` to transcribe the the folder of audio files
