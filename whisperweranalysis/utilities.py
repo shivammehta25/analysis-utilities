@@ -1,5 +1,7 @@
+import argparse
 import logging
 from collections import defaultdict
+from pathlib import Path
 from typing import Dict, List
 
 import numpy as np
@@ -45,3 +47,27 @@ def copy_gt():
             sub_loc = line.strip().split('|')[0]
             wav_path = wav_loc / sub_loc
             shutil.copy(wav_path, SAVE_LOC / f"{i + 1}.wav")
+
+
+
+def make_transcripts(path, output):
+    current_path = Path(path)
+    transcripts = []
+    for f_name in current_path.iterdir():
+        if not '.txt' in str(f_name):
+            continue
+        with open(f_name) as f:
+            transcripts.append(f"{str(f_name.name).replace('.txt', '.wav')}|{f.readline().strip()}\n")
+
+    with open(output, 'w') as f_out:
+        f_out.writelines(transcripts)
+        
+        
+def collate_transcription():
+    ## Exposed to a script
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--path', help="Path to transcriptions", required=True)
+    parser.add_argument('-o', '--output', help="Path to output file", default="transcriptions.txt")
+    args = parser.parse_args()
+    print(args)
+    make_transcripts(args.path, args.output)

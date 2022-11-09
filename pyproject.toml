@@ -30,3 +30,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 whispertranscriber = 'whisperweranalysis.transcriber:main'
 resampler = 'whisperweranalysis.resampler:main'
+collatetranscription = 'whisperweranalysis.utilities:collate_transcription'
