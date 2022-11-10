@@ -1,11 +1,15 @@
+import argparse
+from pathlib import Path
+
+import librosa
 import matplotlib.pyplot as plt
 import numpy as np
 import soundfile as sf
 import torch
 import torch.nn.functional as F
-from scipy.io.wavfile import read
 from librosa.filters import mel as librosa_mel_fn
 from librosa.util import normalize, pad_center, tiny
+from scipy.io.wavfile import read
 from scipy.signal import get_window
 from torch.autograd import Variable
 
@@ -317,7 +321,7 @@ class TacotronSTFT(torch.nn.Module):
         return mel_output
 
 
-def load_wav_to_torch(full_path, sr):
+def load_wav(full_path, sr):
     r"""
     Uses scipy to convert the wav file into torch tensor
     Args:
@@ -330,7 +334,7 @@ def load_wav_to_torch(full_path, sr):
     sample_rate, data = read(full_path)
     data = data.astype(np.float32)
     if sr != sample_rate:
-        import librosa
+        print(f"[!] Resampling {full_path} from {sample_rate} to {sr}")
         data = librosa.resample(data, sample_rate, sr)
 
     return torch.from_numpy(data), sr
@@ -342,7 +346,7 @@ def audio2mel(filename, sampling_rate_target=22050):
     Args:
         filename (string): Example: 'LJSpeech-1.1/wavs/LJ039-0212.wav'
     """
-    audio, sampling_rate = load_wav_to_torch(filename, sr=sampling_rate_target)
+    audio, sampling_rate = load_wav(filename, sr=sampling_rate_target)
 
     stft = TacotronSTFT()
     audio_norm = audio / 32768.0
@@ -384,7 +388,7 @@ def griffin_lim(filename, n_iters=30, sr=22050):
         torch.tensor: reconstructed audio waveform
     """
     stft_fn = STFT()
-    audio, sampling_rate = load_wav_to_torch(filename, sr)
+    audio, sampling_rate = load_wav(filename, sr)
     magnitudes, phases = stft_fn.transform(audio.unsqueeze(0))
     angles = np.angle(np.exp(2j * np.pi * np.random.rand(*magnitudes.size())))
     angles = angles.astype(np.float32)
@@ -395,3 +399,32 @@ def griffin_lim(filename, n_iters=30, sr=22050):
         _, angles = stft_fn.transform(signal)
         signal = stft_fn.inverse(magnitudes, angles).squeeze(1)
     return signal.cpu().numpy(), sampling_rate
+
+
+def convert_to_mels(input_folder, output_folder, sampling_rate=22050):
+    """
+    Converts all the wav files in a folder to mel spectrograms
+
+    Args:
+        input_folder (str): folder containing the wav files
+    """
+    input_folder = Path(input_folder)
+    output_folder = Path(output_folder)
+    if output_folder.exists():
+        print(f'[!] Output folder: {output_folder} already exists.')
+    output_folder.mkdir(parents=True, exist_ok=True)
+    
+    for file in input_folder.glob("*.wav"):
+        mel = audio2mel(file, sampling_rate)
+        output_file = output_folder / file.with_suffix(".pt").name
+        torch.save(mel, output_file)
+
+
+def convert_to_mels_script():
+    parser = argparse.ArgumentParser(description='Convert folder to mels')
+    parser.add_argument("-i", "--input", help="Input folder", required=True)
+    parser.add_argument("-o", "--output", help="Output folder", default="mels")
+    parser.add_argument('-sr','--sampling_rate', help='Target sampling rate', default=22050)
+    args = parser.parse_args()
+    print(args)
+    convert_to_mels(args.input, args.output, args.sampling_rate)

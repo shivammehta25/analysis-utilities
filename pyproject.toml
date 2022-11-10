@@ -31,3 +31,4 @@ build-backend = "poetry.core.masonry.api"
 whispertranscriber = 'whisperweranalysis.transcriber:main'
 resampler = 'whisperweranalysis.resampler:main'
 collatetranscription = 'whisperweranalysis.utilities:collate_transcription'
+audio2mel = 'whisperweranalysis.mel_utilities:convert_to_mels_script'
