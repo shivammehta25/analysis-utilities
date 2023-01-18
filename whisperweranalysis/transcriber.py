@@ -45,7 +45,7 @@ class Whisper:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         filelist = list(input_dir.rglob("*.wav"))
-        for filepath in tqdm(filelist, leave=False):
+        for filepath in tqdm(filelist):
             in_filepath = list(filepath.parts)
             in_filepath[0] = output_dir
             output_path = Path(*in_filepath)
