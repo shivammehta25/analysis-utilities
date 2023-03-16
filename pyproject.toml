@@ -9,7 +9,6 @@ readme = "README.md"
 python = "^3.8"
 numpy = "^1.23.4"
 matplotlib = "^3.6.1"
-whisper = {git = "https://github.com/openai/whisper.git"}
 tqdm = "^4.64.1"
 setuptools-rust = "^1.5.2"
 transformers = "^4.23.1"
@@ -19,6 +18,8 @@ seaborn = "^0.12.0"
 soundfile = "^0.11.0"
 scipy = "^1.9.2"
 librosa = "^0.9.2"
+torch = "^2.0.0"
+openai-whisper = "^20230314"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.16.0"
@@ -32,3 +33,4 @@ whispertranscriber = 'whisperweranalysis.transcriber:main'
 resampler = 'whisperweranalysis.resampler:main'
 collatetranscription = 'whisperweranalysis.utilities:collate_transcription'
 audio2mel = 'whisperweranalysis.mel_utilities:convert_to_mels_script'
+checkpointdeleter = 'whisperweranalysis.checkpoint_deleter:main'

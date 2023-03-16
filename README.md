@@ -3,7 +3,9 @@
 Uses whisper default large to transcribe the text
 
 ## New
+
 Now has command line scripts:
+
 ```
 usage: resampler [-h] -i INPUT [-o OUTPUT] [-sr TARGET_SR]
 
@@ -15,9 +17,9 @@ optional arguments:
                         Output folder
   -sr TARGET_SR, --target-sr TARGET_SR
                         Target sampling rate
-``` 
+```
 
-and 
+and
 
 ```
 usage: whispertranscriber [-h] [-m {large,medium,small}] -i INPUT -o OUTPUT [-e EXCEPTIONS [EXCEPTIONS ...]]
@@ -69,9 +71,6 @@ Use `structure.HvdSet`
 from groundtruth import HvdSet
 hvdset = HvdSet(set_no=1, ground_truth=hvd_sentences)
 ```
-
-
-
 
 Use checkpoint_mover to move the iteration checkpoint to a sub folder
 
