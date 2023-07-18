@@ -20,6 +20,7 @@ scipy = "^1.9.2"
 librosa = "^0.9.2"
 torch = "^2.0.0"
 openai-whisper = "^20230314"
+fairseq = "^0.12.2"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.16.0"
@@ -34,3 +35,4 @@ resampler = 'whisperweranalysis.resampler:main'
 collatetranscription = 'whisperweranalysis.utilities:collate_transcription'
 audio2mel = 'whisperweranalysis.mel_utilities:convert_to_mels_script'
 checkpointdeleter = 'whisperweranalysis.checkpoint_deleter:main'
+predict_mos = 'whisperweranalysis.mos_predictor:main'

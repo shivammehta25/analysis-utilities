@@ -141,3 +141,6 @@ data_backup/
 
 
 LJ_Valid_data/
+
+wav2vec_small.pt
+ckpt_w2vsmall
