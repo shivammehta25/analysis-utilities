@@ -1,0 +1,1 @@
+ Right pairs are fit for a queen's table.

@@ -253,6 +253,7 @@ def parse_args():
         help="Path to wav file to predict MOS for.",
     )
     parser.add_argument(
+        "-i",
         "--wav-dir",
         type=str,
         default=None,

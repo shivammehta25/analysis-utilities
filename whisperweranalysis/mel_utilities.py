@@ -12,6 +12,7 @@ from librosa.util import normalize, pad_center, tiny
 from scipy.io.wavfile import read
 from scipy.signal import get_window
 from torch.autograd import Variable
+from tqdm.auto import tqdm
 
 
 class STFT(torch.nn.Module):
@@ -35,7 +36,7 @@ class STFT(torch.nn.Module):
             window {str} -- Type of window to use (options are bartlett, hann, hamming, blackman, blackmanharris)
                 (default: {'hann'})
         """
-        super(STFT, self).__init__()
+        super().__init__()
         self.filter_length = filter_length
         self.hop_length = hop_length
         self.win_length = win_length
@@ -44,7 +45,7 @@ class STFT(torch.nn.Module):
         scale = self.filter_length / self.hop_length
         fourier_basis = np.fft.fft(np.eye(self.filter_length))
 
-        cutoff = int((self.filter_length / 2 + 1))
+        cutoff = int(self.filter_length / 2 + 1)
         fourier_basis = np.vstack(
             [np.real(fourier_basis[:cutoff, :]), np.imag(fourier_basis[:cutoff, :])]
         )
@@ -58,7 +59,7 @@ class STFT(torch.nn.Module):
             assert filter_length >= win_length
             # get window and zero center pad it to filter_length
             fft_window = get_window(window, win_length, fftbins=True)
-            fft_window = pad_center(fft_window, filter_length)
+            fft_window = pad_center(fft_window, size=filter_length)
             fft_window = torch.from_numpy(fft_window).float()
 
             # window the bases
@@ -107,7 +108,7 @@ class STFT(torch.nn.Module):
         real_part = forward_transform[:, :cutoff, :]
         imag_part = forward_transform[:, cutoff:, :]
 
-        magnitude = torch.sqrt(real_part ** 2 + imag_part ** 2)
+        magnitude = torch.sqrt(real_part**2 + imag_part**2)
         phase = torch.autograd.Variable(torch.atan2(imag_part.data, real_part.data))
 
         return magnitude, phase
@@ -278,7 +279,7 @@ class TacotronSTFT(torch.nn.Module):
         mel_fmin=0.0,
         mel_fmax=8000.0,
     ):
-        super(TacotronSTFT, self).__init__()
+        super().__init__()
         self.n_mel_channels = n_mel_channels  # 80
         self.sampling_rate = sampling_rate  # 22050
         self.stft_fn = STFT(filter_length, hop_length, win_length)
@@ -286,7 +287,11 @@ class TacotronSTFT(torch.nn.Module):
         # """This produces a linear transformation matrix to project FFT bins
         # onto Mel-frequency bins."""
         mel_basis = librosa_mel_fn(
-            sampling_rate, filter_length, n_mel_channels, mel_fmin, mel_fmax
+            sr=sampling_rate,
+            n_fft=filter_length,
+            n_mels=n_mel_channels,
+            fmin=mel_fmin,
+            fmax=mel_fmax,
         )
         # all default values
 
@@ -361,7 +366,7 @@ def plot_mel(mel_spectrogram, title=None):
     r"""
     Plots a mel spectrogram
     Args:
-        mel_spectrogram (torch.FloatTensor): mel spectrogram of shape 
+        mel_spectrogram (torch.FloatTensor): mel spectrogram of shape
         (n_mel_channels, T)
         title (string): Title of the plot
     """
@@ -411,20 +416,22 @@ def convert_to_mels(input_folder, output_folder, sampling_rate=22050):
     input_folder = Path(input_folder)
     output_folder = Path(output_folder)
     if output_folder.exists():
-        print(f'[!] Output folder: {output_folder} already exists.')
+        print(f"[!] Output folder: {output_folder} already exists.")
     output_folder.mkdir(parents=True, exist_ok=True)
-    
-    for file in input_folder.glob("*.wav"):
+    all_files = list(input_folder.glob("*.wav"))
+    for file in tqdm(all_files):
         mel = audio2mel(file, sampling_rate)
         output_file = output_folder / file.with_suffix(".pt").name
         torch.save(mel, output_file)
 
 
 def convert_to_mels_script():
-    parser = argparse.ArgumentParser(description='Convert folder to mels')
+    parser = argparse.ArgumentParser(description="Convert folder to mels")
     parser.add_argument("-i", "--input", help="Input folder", required=True)
     parser.add_argument("-o", "--output", help="Output folder", default="mels")
-    parser.add_argument('-sr','--sampling_rate', help='Target sampling rate', default=22050)
+    parser.add_argument(
+        "-sr", "--sampling_rate", help="Target sampling rate", default=22050
+    )
     args = parser.parse_args()
     print(args)
     convert_to_mels(args.input, args.output, args.sampling_rate)

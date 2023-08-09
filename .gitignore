@@ -144,3 +144,6 @@ LJ_Valid_data/
 
 wav2vec_small.pt
 ckpt_w2vsmall
+
+
+waveforms_ICASSP24/

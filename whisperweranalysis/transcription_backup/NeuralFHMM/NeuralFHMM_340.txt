@@ -1,1 +1,0 @@
- Own is used when secrets are sent.

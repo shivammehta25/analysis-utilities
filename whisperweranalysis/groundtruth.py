@@ -758,7 +758,7 @@ lj_valid = [
     "During his Presidency, Franklin D. Roosevelt made almost four hundred journeys and traveled more than three hundred fifty thousand miles.",
     "He was seen afterwards smoking and talking with his hosts in their back parlor, and never seen again alive.",
     "long narrow rooms, one 36 feet, six 23 feet, and the eighth 18.",
-    "We come to the sermon.",
+    # "We come to the sermon.",
     "even when the high sheriff had told him there was no possibility of a reprieve, and within a few hours of execution.",
     "but there is a system for the immediate notification of the Secret Service by the confining institution when a subject is released or escapes.",
     "When other pleasures palled he took a theater, and posed as a munificent patron of the dramatic art.",

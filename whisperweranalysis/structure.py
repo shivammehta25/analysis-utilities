@@ -1,7 +1,9 @@
+import json
 from collections import Counter, defaultdict
 from email.policy import default
 from pathlib import Path
 
+import numpy as np
 from pyexpat import model
 from tqdm.auto import tqdm
 
@@ -146,6 +148,37 @@ class LJSpeech:
         lj_class = cls(model_name, iter_name)
         lj_class.load_transcriptions(dir_path)
         return lj_class
+
+
+class Predicted_MOS:
+    def __init__(self, model_name, iterations, predicted_mos) -> None:
+        self.model_name = model_name
+        self.iterations = iterations
+        self.predicted_mos = predicted_mos
+        self.compute_stats()
+
+    @classmethod
+    def load_from_dir(cls, dir_path, filename="predicted_mos.json"):
+        if not isinstance(dir_path, Path):
+            dir_path = Path(dir_path)
+        with open(dir_path / filename) as f:
+            predicted_mos = json.load(f)
+        iter_name = dir_path.name
+        model_name = dir_path.parent.name
+        return cls(model_name, iter_name, predicted_mos)
+
+    def compute_stats(self):
+        predicted_mos_values = list(self.predicted_mos.values())
+        self.mean = np.mean(predicted_mos_values)
+        self.std = np.std(predicted_mos_values)
+        self.min = np.min(predicted_mos_values)
+        self.max = np.max(predicted_mos_values)
+        self.median = np.median(predicted_mos_values)
+        self.mode = Counter(predicted_mos_values).most_common(1)[0][0]
+        self.count = len(predicted_mos_values)
+
+    def __repr__(self) -> str:
+        return f"Predicted_MOS(model_name={self.model_name}, iterations={self.iterations}, mean={self.mean:.3f}, std={self.std:.3f}, min={self.min:.3f}, max={self.max:.3f}, median={self.median:.3f}, mode={self.mode:.3f}, count={self.count})"
 
 
 if __name__ == "__main__":

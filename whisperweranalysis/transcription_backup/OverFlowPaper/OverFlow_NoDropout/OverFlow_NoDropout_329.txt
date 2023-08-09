@@ -1,0 +1,1 @@
+ Glass will clink when struck by metal.

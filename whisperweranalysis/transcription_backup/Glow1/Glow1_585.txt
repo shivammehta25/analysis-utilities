@@ -1,1 +1,0 @@
- Keep the hash height and the watch constant.
