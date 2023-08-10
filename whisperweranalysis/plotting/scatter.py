@@ -125,6 +125,7 @@ def plot_scatter_from_list_of_dict(
     aspect_ratio: Optional[Tuple[float]] = (1, 1),
     plot_log_x: bool = False,
     plot_log_y: bool = False,
+    radius: float = 1,
     **kwargs,
 ) -> None:
     """
@@ -188,10 +189,15 @@ def plot_scatter_from_list_of_dict(
         ax.scatter(
                     x,
                     y,
-                    label=legend_label[i],
                     marker=markers[i],
                     color=color,
+                    s=radius,
+                    alpha=0.2
                 )
+        b, a = np.polyfit(x, y, deg=1)
+        xseq = np.linspace(0, 1500, num=100)
+        # Plot regression line
+        ax.plot(xseq, a + b * xseq, color=color, lw=1.5, label=legend_label[i])
 
     if plot_log_x:
         ax.set_xscale("log")
@@ -224,7 +230,9 @@ def plot_scatter_from_list_of_dict(
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
     ax.set_title(title)
-    ax.legend(loc=(1.04, 0.15))
+    leg = ax.legend(loc=(1.04, 0.15), markerscale=2, frameon=False)
+    for lh in leg.legendHandles:
+        lh.set_alpha(1)
 
     if file_name:
         plt.savefig(file_name, bbox_inches="tight")

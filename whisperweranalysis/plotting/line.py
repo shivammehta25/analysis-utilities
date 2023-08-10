@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from matplotlib import ticker
+from scipy.ndimage import gaussian_filter1d
 
 CB91_Blue = "#2CBDFE"
 CB91_Green = "#47DBCD"
@@ -146,6 +147,7 @@ def plot_lines(
     aspect_ratio: Optional[Tuple[float]] = (1, 1),
     plot_log_x: bool = False,
     plot_log_y: bool = False,
+    smoothing: int = None,
     **kwargs,
 ) -> None:
     """
@@ -207,9 +209,14 @@ def plot_lines(
     plt.rcParams["mathtext.fontset"] = "cm"
 
     for i in range(len(y)):
+        if smoothing is not None and isinstance(smoothing, int):
+            y_i = gaussian_filter1d(y[i], sigma=1, order=0) 
+        else:
+            y_i = y[i]
+        
         ax.plot(
-            x[i],
-            y[i],
+            sorted(x[i]),
+            sorted(y_i),
             line_format[i],
             label=legend_label[i],
             color=next(color_iterator),

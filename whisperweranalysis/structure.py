@@ -195,13 +195,22 @@ class LenRTF:
         return dict(self.storage)
     
     def to_json(self, filename):
-        json.dump(self.data, open(filename, "w"))
-    
+        json.dump(self.data, open(filename, "w"), indent=4)
+        
+    def filter_k_records(self, k):
+        new_storage = defaultdict(list)
+        for key, value in self.storage.items():
+            new_storage[key] = value[:k]
+        self.storage = new_storage
+            
     @classmethod
-    def from_json(cls, filename):
+    def from_json(cls, filename, k=None):
         obj = cls()
         obj.storage = defaultdict(list, json.load(open(filename)))
         obj.name = Path(filename).stem
+        if k is not None:
+            obj.filter_k_records(k)
+
         return obj
 
     def __repr__(self) -> str:
