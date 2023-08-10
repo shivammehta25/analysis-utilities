@@ -725,7 +725,7 @@ hvd_sentences = [
 lj_valid = [
     "The overwhelming majority of people in this country know how to sift the wheat from the chaff in what they hear and what they read.",
     "If somebody did that to me, a lousy trick like that, to take my wife away, and all the furniture, I would be mad as hell, too.",
-    "as is shown by the report of the Commissioners to inquire into the state of the municipal corporations in 1835.",
+    # "as is shown by the report of the Commissioners to inquire into the state of the municipal corporations in 1835.",
     "Even the Caslon type when enlarged shows great shortcomings in this respect:",
     "All the committee could do in this respect was to throw the responsibility on others.",
     "These pungent and well grounded strictures applied with still greater force to the unconvicted prisoner, the man who came to the prison innocent, and still uncontaminated.",
@@ -885,4 +885,14 @@ text = [
     "And the windows of the opposite houses, which commanded a good view,, as usual fetched high prices.",
     "This was all the police wanted to know.",
     "That is reflected in definite and comprehensive operating procedures.",
+]
+
+
+
+rtf_list = [
+    "The sun sets over the horizon, painting the sky.",
+    "Lost in thought, she wandered through the maze of memories.",
+    "A lone tree stands tall in the middle of meadow.",
+    "The old bookshop smelled of dust and nostalgic stories.",
+    "Racing against time, he worked tirelessly to meet deadline."
 ]

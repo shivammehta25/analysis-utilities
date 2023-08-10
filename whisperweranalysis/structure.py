@@ -1,10 +1,9 @@
 import json
 from collections import Counter, defaultdict
-from email.policy import default
+from itertools import chain
 from pathlib import Path
 
 import numpy as np
-from pyexpat import model
 from tqdm.auto import tqdm
 
 from whisperweranalysis.groundtruth import hvd_sentences
@@ -180,6 +179,34 @@ class Predicted_MOS:
     def __repr__(self) -> str:
         return f"Predicted_MOS(model_name={self.model_name}, iterations={self.iterations}, mean={self.mean:.3f}, std={self.std:.3f}, min={self.min:.3f}, max={self.max:.3f}, median={self.median:.3f}, mode={self.mode:.3f}, count={self.count})"
 
+
+
+
+class LenRTF:
+    def __init__(self):
+        self.storage = defaultdict(list)
+        self.name = None
+    
+    def add(self, txt_len, rtf):
+        self.storage[txt_len].append(rtf)
+        
+    @property
+    def data(self):
+        return dict(self.storage)
+    
+    def to_json(self, filename):
+        json.dump(self.data, open(filename, "w"))
+    
+    @classmethod
+    def from_json(cls, filename):
+        obj = cls()
+        obj.storage = defaultdict(list, json.load(open(filename)))
+        obj.name = Path(filename).stem
+        return obj
+
+    def __repr__(self) -> str:
+        array = np.array(list(chain.from_iterable(self.data.values())))
+        return f"LenRTF({self.name}: len={len(self.data)}, mean±std={np.mean(array):.3f}±{np.std(array):.3f}, min:{np.min(array):.3f}, max={np.max(array):.3f})"
 
 if __name__ == "__main__":
     # from whisperweranalysis.groundtruth import hvd_sentences

@@ -378,7 +378,7 @@ def plot_lines_with_confidence_intervals(
     ax.set_title(title)
     ax.legend(loc=(1.04, 0.15))
 
-    ax.invert_yaxis()
+    # ax.invert_yaxis()
 
     if file_name:
         plt.savefig(file_name, bbox_inches="tight")
