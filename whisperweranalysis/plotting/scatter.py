@@ -196,6 +196,7 @@ def plot_scatter_from_list_of_dict(
         xseq = np.linspace(0, 1500, num=100)
         # Plot regression line
         ax.plot(xseq, a + b * xseq, color=color, lw=1.5, label=legend_label[i])
+        print(i, b, a)
 
     if plot_log_x:
         ax.set_xscale("log")
