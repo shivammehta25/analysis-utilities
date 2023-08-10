@@ -4,7 +4,6 @@ from typing import Any, List, Optional, Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from matplotlib import ticker
 
 from .line import adjustFigAspect, validate_input
 
@@ -140,7 +139,8 @@ def plot_scatter_from_list_of_dict(
 
 
     Args:
-        x (List[Any]): X axis values. If only one input is provided it will be used for all lines by broadcasting to the length of y.
+        x (List[Any]): X axis values.
+        If only one input is provided it will be used for all lines by broadcasting to the length of y.
         y (List[Any]): Y axis values.
         x_label (str): X axis label.
         y_label (str): Y axis label.
@@ -160,11 +160,16 @@ def plot_scatter_from_list_of_dict(
     validate_input(xs[0], list)
     validate_input(xs[0][0], int)
 
-    assert len(xs) == len(ys), f"input lengths must be of the same length but received x: {len(xs)}, y: {len(ys)}"
-    assert len(xs[0]) == len(ys[0]), f"per scatter x and y must be of the same length but received x: {len(xs[0])}, y: {len(ys[0])}"
-    assert (
-        len(xs) == len(legend_label)
-    ), f"dict and legend label must be of the same length but received x: {len(inp_dicts)} and legend_label: {len(legend_label)}"
+    assert len(xs) == len(
+        ys
+    ), f"input lengths must be of the same length but received x: {len(xs)}, y: {len(ys)}"
+    assert len(xs[0]) == len(
+        ys[0]
+    ), f"per scatter x and y must be of the same length but received x: {len(xs[0])}, y: {len(ys[0])}"
+    assert len(xs) == len(
+        legend_label
+    ), f"dict and legend label must be of the same \
+        length but received x: {len(xs)} and legend_label: {len(legend_label)}"
 
     if not markers:
         markers = ["o" for _ in range(len(xs))]
@@ -186,14 +191,7 @@ def plot_scatter_from_list_of_dict(
 
     for i, (x, y) in enumerate(zip(xs, ys)):
         color = next(color_iterator)
-        ax.scatter(
-                    x,
-                    y,
-                    marker=markers[i],
-                    color=color,
-                    s=radius,
-                    alpha=0.2
-                )
+        ax.scatter(x, y, marker=markers[i], color=color, s=radius, alpha=0.2)
         b, a = np.polyfit(x, y, deg=1)
         xseq = np.linspace(0, 1500, num=100)
         # Plot regression line
@@ -207,14 +205,16 @@ def plot_scatter_from_list_of_dict(
     if x_tick_labels:
         assert len(x_ticks) == len(
             x_tick_labels
-        ), f"x_tick_labels must be of the same length as x_ticks but received x_tick_labels: {len(x_tick_labels)}, x_ticks: {len(x_ticks)}."
+        ), f"x_tick_labels must be of the same length \
+            as x_ticks but received x_tick_labels: {len(x_tick_labels)}, x_ticks: {len(x_ticks)}."
         ax.set_xticks(x_ticks)
         ax.set_xticklabels(x_tick_labels)
 
     if y_tick_labels:
         assert len(y_ticks) == len(
             y_tick_labels
-        ), f"y_tick_labels must be of the same length as y_ticks but received y_tick_labels: {len(y_tick_labels)}, y_ticks: {len(y_ticks)}."
+        ), f"y_tick_labels must be of the  \
+            same length as y_ticks but received y_tick_labels: {len(y_tick_labels)}, y_ticks: {len(y_ticks)}."
         ax.set_yticks(y_ticks)
         ax.set_yticklabels(y_tick_labels)
 
