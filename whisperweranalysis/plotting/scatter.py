@@ -197,13 +197,13 @@ def plot_scatter_from_list_of_dict(
             marker=markers[i],
             color=color,
             s=radius,
-            alpha=1,
+            alpha=0.2,
             label=legend_label[i],
         )
         b, a = np.polyfit(x, y, deg=1)
         xseq = np.linspace(0, 1500, num=100)
         # Plot regression line
-        # ax.plot(xseq, a + b * xseq, color=color, lw=1.5, label=legend_label[i])
+        ax.plot(xseq, a + b * xseq, color=color, lw=1.5, label=legend_label[i])
 
     if plot_log_x:
         ax.set_xscale("log")
