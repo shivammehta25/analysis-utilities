@@ -210,13 +210,13 @@ def plot_lines(
 
     for i in range(len(y)):
         if smoothing is not None and isinstance(smoothing, int):
-            y_i = gaussian_filter1d(y[i], sigma=1, order=0) 
+            y_i = gaussian_filter1d(y[i], sigma=1, order=0)
         else:
             y_i = y[i]
-        
+
         ax.plot(
-            sorted(x[i]),
-            sorted(y_i),
+            x[i],
+            y_i,
             line_format[i],
             label=legend_label[i],
             color=next(color_iterator),
