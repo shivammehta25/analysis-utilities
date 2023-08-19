@@ -198,7 +198,7 @@ def plot_scatter_from_list_of_dict(
             color=color,
             s=radius,
             alpha=0.2,
-            label=legend_label[i],
+            # label=legend_label[i],
         )
         b, a = np.polyfit(x, y, deg=1)
         xseq = np.linspace(0, 1500, num=100)
