@@ -125,6 +125,7 @@ def plot_scatter_from_list_of_dict(
     plot_log_x: bool = False,
     plot_log_y: bool = False,
     radius: float = 1,
+    alpha: float = 0.2,
     **kwargs,
 ) -> None:
     """
@@ -197,7 +198,7 @@ def plot_scatter_from_list_of_dict(
             marker=markers[i],
             color=color,
             s=radius,
-            alpha=0.2,
+            alpha=alpha,
             # label=legend_label[i],
         )
         b, a = np.polyfit(x, y, deg=1)
