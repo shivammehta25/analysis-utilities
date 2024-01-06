@@ -126,6 +126,7 @@ def plot_scatter_from_list_of_dict(
     plot_log_y: bool = False,
     radius: float = 1,
     alpha: float = 0.2,
+    linestyle: Optional[str] = None,
     **kwargs,
 ) -> None:
     """
@@ -204,7 +205,14 @@ def plot_scatter_from_list_of_dict(
         b, a = np.polyfit(x, y, deg=1)
         xseq = np.linspace(0, 1500, num=100)
         # Plot regression line
-        ax.plot(xseq, a + b * xseq, color=color, lw=1.5, label=legend_label[i])
+        ax.plot(
+            xseq,
+            a + b * xseq,
+            color=color,
+            lw=1.5,
+            label=legend_label[i],
+            linestyle=linestyle[i],
+        )
 
     if plot_log_x:
         ax.set_xscale("log")
