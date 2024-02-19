@@ -29,7 +29,7 @@ class Whisper:
         result = self.model.transcribe(audio_path, language=lang)
         return result["text"]
 
-    def transcribe_folder(self, input_dir, output_dir, exception=None):
+    def transcribe_folder(self, input_dir, output_dir, exception=None, override=False):
         if exception:
             if isinstance(exception, list):
                 exception = set(exception)
@@ -58,7 +58,7 @@ class Whisper:
             output_path.parent.mkdir(parents=True, exist_ok=True)
             transcription_path = output_path.with_suffix(".txt")
 
-            if transcription_path.exists():
+            if transcription_path.exists() and not override:
                 print(f"\r[!] Skipping: {transcription_path} it already exists!")
                 continue
 
@@ -84,10 +84,19 @@ def main():
     parser.add_argument(
         "-e", "--exceptions", nargs="+", help="Subfolders to exclude", default=None
     )
+    parser.add_argument(
+        "-o",
+        "--override",
+        help="Override existing transcriptions",
+        action="store_true",
+        default=False,
+    )
     args = parser.parse_args()
     print(args)
     whisper = Whisper(model=args.model)
-    whisper.transcribe_folder(args.input, args.output, exception=args.exceptions)
+    whisper.transcribe_folder(
+        args.input, args.output, exception=args.exceptions, override=args.override
+    )
 
 
 if __name__ == "__main__":

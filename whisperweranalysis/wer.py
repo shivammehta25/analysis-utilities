@@ -1,4 +1,5 @@
 import argparse
+from pathlib import Path
 
 import jiwer
 
@@ -47,6 +48,9 @@ def load_transcriptions_from_folder(folder_path):
     Returns:
         List
     """
+    if isinstance(folder_path, str):
+        folder_path = Path(folder_path)
+
     all_transcriptions = []
     for file in folder_path.glob("*.txt"):
         with open(file) as f:
@@ -60,11 +64,27 @@ def main():
 
     parser.add_argument("-r", "--reference", help="Input ground truth", required=True)
     parser.add_argument("-i", "--input", help="Input folder", required=True)
+    parser.add_argument(
+        "-rt", "--reference_type", choices=["folder", "file"], default="folder"
+    )
+    parser.add_argument(
+        "-it", "--input_type", choices=["folder", "file"], default="folder"
+    )
     args = parser.parse_args()
     print(args)
 
-    reference = load_transcriptions_from_folder(args.reference)
-    hypothesis = load_transcriptions_from_folder(args.input)
+    if args.reference_type == "folder":
+        reference = load_transcriptions_from_folder(args.reference)
+    else:
+        with open(args.reference) as f:
+            reference = f.readlines()
+
+    if args.input_type == "folder":
+        hypothesis = load_transcriptions_from_folder(args.input)
+    else:
+        with open(args.input) as f:
+            hypothesis = f.readlines()
+
     wer = compute(reference, hypothesis)
     print(f"WER: {wer:.4f}%")
 
