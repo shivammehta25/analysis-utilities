@@ -85,7 +85,7 @@ def main():
         "-e", "--exceptions", nargs="+", help="Subfolders to exclude", default=None
     )
     parser.add_argument(
-        "-o",
+        "-f",
         "--override",
         help="Override existing transcriptions",
         action="store_true",
