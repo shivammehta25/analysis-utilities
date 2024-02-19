@@ -70,7 +70,7 @@ class Whisper:
 
 
 def main():
-    model_choices = ["large", "medium", "small"]
+    model_choices = ["large", "medium.en", "small"]
     parser = argparse.ArgumentParser(description="Run whisper on a folder")
     parser.add_argument(
         "-m",
