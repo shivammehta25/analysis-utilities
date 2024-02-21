@@ -45,7 +45,8 @@ class Whisper:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         filelist = list(input_dir.rglob("*.wav"))
-        for filepath in tqdm(filelist):
+        pbar = tqdm(filelist)
+        for filepath in pbar:
             in_filepath = list(filepath.parts)
             in_filepath[0] = output_dir
             output_path = Path(*in_filepath)
@@ -57,10 +58,11 @@ class Whisper:
 
             output_path.parent.mkdir(parents=True, exist_ok=True)
             transcription_path = output_path.with_suffix(".txt")
-
             if transcription_path.exists() and not override:
-                print(f"\r[!] Skipping: {transcription_path} it already exists!")
+                pbar.write(f"\r[!] Skipping: {transcription_path} it already exists!")
                 continue
+            elif transcription_path.exists() and override:
+                pbar.write(f"\r[!] Overriding: {transcription_path}")
 
             text = self.transcribe(str(filepath))
 
@@ -91,8 +93,13 @@ def main():
         action="store_true",
         default=False,
     )
+    parser.add_argument(
+        "-v", "--verbose", help="Verbose mode", action="store_true", default=False
+    )
     args = parser.parse_args()
-    print(args)
+    if args.verbose:
+        print(args)
+
     whisper = Whisper(model=args.model)
     whisper.transcribe_folder(
         args.input, args.output, exception=args.exceptions, override=args.override

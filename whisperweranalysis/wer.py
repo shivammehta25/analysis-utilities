@@ -70,8 +70,12 @@ def main():
     parser.add_argument(
         "-it", "--input_type", choices=["folder", "file"], default="folder"
     )
+    parser.add_argument(
+        "-v", "--verbose", help="Verbose mode", action="store_true", default=False
+    )
     args = parser.parse_args()
-    print(args)
+    if args.verbose:
+        print(args)
 
     if args.reference_type == "folder":
         reference = load_transcriptions_from_folder(args.reference)
