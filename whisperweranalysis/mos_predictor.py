@@ -32,7 +32,7 @@ class MosPredictor(nn.Module):
         self.output_layer = nn.Linear(self.ssl_features, 1)
 
     def forward(self, wav):
-        wav = wav.squeeze(1)  ## [batches, audio_len]
+        wav = wav.squeeze(1)  # [batches, audio_len]
         res = self.ssl_model(wav, mask=False, features_only=True)
         x = res["x"]
         x = torch.mean(x, 1)
@@ -63,7 +63,7 @@ class MyDataset(Dataset):
     def __len__(self):
         return len(self.wavnames)
 
-    def collate_fn(self, batch):  ## zero padding
+    def collate_fn(self, batch):  # zero padding
         wavs, scores, wavnames = zip(*batch)
         wavs = list(wavs)
         max_len = max(wavs, key=lambda x: x.shape[1]).shape[1]
@@ -154,7 +154,7 @@ def train():
     net = MosPredictor(ssl_model, SSL_OUT_DIM)
     net = net.to(device)
 
-    if my_checkpoint != None:  ## do (further) finetuning
+    if my_checkpoint is not None:  # do (further) finetuning
         net.load_state_dict(torch.load(my_checkpoint))
 
     criterion = nn.L1Loss()
@@ -182,10 +182,10 @@ def train():
         print("AVG EPOCH TRAIN LOSS: " + str(running_loss / STEPS))
         epoch_val_loss = 0.0
         net.eval()
-        ## clear memory to avoid OOM
+        # clear memory to avoid OOM
         with torch.cuda.device(device):
             torch.cuda.empty_cache()
-        ## validation
+        # validation
         VALSTEPS = 0
         for i, data in enumerate(validloader, 0):
             VALSTEPS += 1
@@ -238,7 +238,8 @@ def parse_args():
         default="/home/smehta/Projects/whisper-analysis-plots/ckpt_w2vsmall",
         help="Path to finetuned MOS prediction checkpoint.",
     )
-    # parser.add_argument('--outfile', type=str, required=False, default='answer.txt', help='Output filename for your answer.txt file for submission to the CodaLab leaderboard.')
+    # parser.add_argument('--outfile', type=str, required=False, default='answer.txt',
+    # help='Output filename for your answer.txt file for submission to the CodaLab leaderboard.')
     parser.add_argument(
         "--device",
         type=str,
@@ -337,15 +338,22 @@ def predict_mos_dir(wav_dir, model, device, save_in_dir=True):
     mos = np.array(list(mos_dict.values()))
     print("mean mos:", np.mean(mos))
     print("std mos:", np.std(mos))
-    print("total audio", len(mos))
+    print("total audio samples:", len(mos))
+
+    summary = {
+        "mean_mos": float(np.mean(mos)),
+        "std_mos": float(np.std(mos)),
+        "total_audio_samples": int(len(mos)),
+    }
 
     if save_in_dir:
         json.dump(mos_dict, open(os.path.join(wav_dir, "predicted_mos.json"), "w"))
+        json.dump(summary, open(os.path.join(wav_dir, "mos_summary.json"), "w"))
     return mos
 
 
 def main():
-    ## Exposed to script
+    # Exposed to script
     args = parse_args()
     model = get_mos_model(
         cp_path=args.fairseq_base_model,

@@ -1,7 +1,22 @@
 import argparse
 from pathlib import Path
+from typing import List
 
 import jiwer
+
+
+class DisfulencyRemover(jiwer.transforms.AbstractTransform):
+    def __init__(self) -> None:
+        super().__init__()
+        self.disfluencies = {"uh", "uhm", "ah", "uck"}
+
+    def process_string(self, s: List):
+        # import pdb; pdb.set_trace()
+        return [x for x in s if x not in self.disfluencies]
+
+    def process_list(self, inp: List[str]):
+        return [self.process_string(s) for s in inp]
+
 
 normalising_transformation = jiwer.Compose(
     [
@@ -12,6 +27,7 @@ normalising_transformation = jiwer.Compose(
         jiwer.RemovePunctuation(),
         jiwer.ExpandCommonEnglishContractions(),
         jiwer.ReduceToListOfListOfWords(),
+        DisfulencyRemover(),
     ]
 )
 
